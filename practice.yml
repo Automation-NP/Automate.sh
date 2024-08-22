@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: true
+
+
+  tasks:
+    - name: Package installation
+      ansible.builtin.yum:
+        name: docker
+        state: present
+        update_cache: yes

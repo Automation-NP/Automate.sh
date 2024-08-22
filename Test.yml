@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Check package
+      ansible.builtin.yum:
+        name: docker
+        state: present
+
