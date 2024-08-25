@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Cache clear
-echo -e "\e[col33mWe are Clearing cache\[m0"
+echo -e "\e[33mWe are Clearing cache\e[0m"
 echo 1 > /proc/sys/vm/drop_caches
 free -h
-echo -e "\e[col34mCache has been cleared\[m0"
+echo -e "\e[34mCache has been cleared\e[0m"
