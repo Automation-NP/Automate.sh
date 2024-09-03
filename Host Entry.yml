@@ -10,3 +10,9 @@
         path: /etc/hosts
         regexp : '192.168.0.0'
         replace: '#192.168.0.0'
+
+    - name: To comment BCC Hosts and Uncomment IDC Hosts
+      ansible.builtin.replace:
+        path: /etc/hosts
+        regexp: '#192.168.0.2'
+        replace: '192.168.0.2'
