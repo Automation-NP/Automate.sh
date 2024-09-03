@@ -1,0 +1,11 @@
+---
+- name: Update Web Server
+  hosts: all
+  become: true
+
+
+  tasks:
+    - name: Install ngnix Package
+      ansible.builtin.yum:
+        name: ngnix
+        state: latest
