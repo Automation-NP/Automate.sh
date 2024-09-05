@@ -10,5 +10,5 @@
     - name: To comment BCC Host Entry's
       ansible.builtin.lineinfile:
         path : /etc/hosts
-        regexp: "^#192.168.0.0"
-        line : "192.168.0.0"
+        regexp: "^#192.168.0.0 VMINPRDB"
+        line : "192.168.0.0 VMINPRDB"
