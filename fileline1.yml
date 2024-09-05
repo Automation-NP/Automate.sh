@@ -1,0 +1,14 @@
+---
+- name: Host Entry Changes
+  hosts: all
+  become: true
+
+
+
+
+  tasks:
+    - name: To comment BCC Host Entry's
+      ansible.builtin.lineinfile:
+        path : /etc/hosts
+        regexp: "^#192.168.0.0"
+        line : "192.168.0.0"
