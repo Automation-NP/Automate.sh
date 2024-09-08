@@ -2,7 +2,7 @@
 - name: Print using Vars in Ansible
   hosts: localhost
   vars_file:
-    - sample-vars.yml
+    - Automate.sh/sample-vars.yml
 
   vars:
     URL: Play.example.com
