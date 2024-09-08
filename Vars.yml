@@ -1,13 +1,13 @@
 ---
 - name: Print using Vars in Ansible
   hosts: localhost
-  vars_file:
+  vars_files:
     - Automate.sh/sample-vars.yml
 
   vars:
     URL: Play.example.com
 
   tasks:
-    - name: print URL
+    - name: Print URL
       ansible.builtin.debug:
-        msg: URL -"{{URL}}", URL1 -"{{URL1}}"
+        msg: "URL - {{ URL }}, URL1 - {{ URL1 | default('undefined') }}"
