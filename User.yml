@@ -1,0 +1,12 @@
+---
+- name: To create users
+  hosts: all
+  become: true
+
+
+
+  tasks:
+    - name: To create user
+      ansible.builtin.user:
+        name: np
+        shell: /bin/bash
