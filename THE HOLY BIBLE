@@ -1,0 +1,14 @@
+#!/bin/bash
+
+VERSE_FILE=The_Holy_Bible.txt
+
+if [ ! -f "$VERSE_FILE" ]; then
+    echo "Verse file not found!"
+    exit 1
+fi
+
+RANDOM_VERSE=$(shuf -n 1 "$VERSE_FILE")
+
+echo "Here is your Bible verse for today:"
+echo "$RANDOM_VERSE"
+
