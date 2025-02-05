@@ -12,6 +12,7 @@ type minikube &>/dev/null
   fi
 
   sysctl fs.protected_regular=0
+  curl -L -o /bin/kubectl "https://d1.k8s.io/releases/$(curl -L -s https://d1.k8s.io/releases/stable.txt)/bin/linux/amd64/kubectl"
 
 
   echo "Running minikube start --force"
