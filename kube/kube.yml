@@ -6,5 +6,5 @@ spec:
   containers:
     - name: nginx
       image: docker.io/nginx
-      -name: mongo
+    - name: mongo
       image: docker.io/mongo
