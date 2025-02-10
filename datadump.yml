@@ -1,23 +1,30 @@
 ---
-- name: Check SecureBoot and record IP if enabled
-  hosts: all
-  become: true  # To run the tasks as a superuser if needed
-  tasks:
-    - name: Check if Secure Boot is enabled
-      shell: "mokutil --sb-state"
-      register: secureboot_status
-      ignore_errors: true  # in case mokutil is not installed
+  - name: Check SecureBoot and record IP if enabled
+    hosts: all
+    become: true  # To run the tasks as a superuser if needed
+    tasks:
+  - name: Check if Secure Boot is enabled
+    shell: "mokutil --sb-state"
+    register: secureboot_status
+    ignore_errors: true  # in case mokutil is not installed
 
-    - name: Fail if mokutil is not available
-      fail:
-        msg: "mokutil command is not found on the system, unable to check Secure Boot status"
-      when: EFI variables are not supported on this system
+  - name: Check if EFI variables are not supported
+    debug:
+    msg: "EFI variables are not supported on this system. Secure Boot cannot be enabled."
+    when: "'EFI variables are not supported on this system' in secureboot_status.stderr"
 
-    - name: Extract Secure Boot status
-      set_fact:
-        secureboot_enabled: "{{ 'SecureBoot' in secureboot_status.stdout }}"
+  - name: Check if Secure Boot is disabled or not installed
+    debug:
+    msg: "Secure Boot is not installed or disabled"
+    when: "'SecureBoot disabled' in secureboot_status.stdout or secureboot_status.rc != 0"
 
-    - name: Get the server IP address
+  - name: Secure Boot is enabled
+    debug:
+      msg: "Secure Boot is enabled"
+      when: "'SecureBoot enabled' in secureboot_status.stdout"
+
+
+      - name: Get the server IP address
       command: "hostname -I"
       register: server_ip
       when: secureboot_enabled
@@ -26,4 +33,4 @@
       copy:
         content: "{{ server_ip.stdout }}"
         dest: "/path/to/secureboot.txt"
-      when: secureboot_enabled
+        when: secureboot_enabled
