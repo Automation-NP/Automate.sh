@@ -11,7 +11,7 @@
     - name: Fail if mokutil is not available
       fail:
         msg: "mokutil command is not found on the system, unable to check Secure Boot status"
-      when: secureboot_status.failed
+      when: EFI variables are not supported on this system
 
     - name: Extract Secure Boot status
       set_fact:
